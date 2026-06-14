@@ -1,49 +1,166 @@
-# React Todo App
+# React Todo App - Dockerized
 
-This is a sample react todo app done step-by-step.
-This sample app was a part of react workshop.
+A React Todo application containerized using Docker with a production-ready multi-stage build and Nginx.
 
-You can check the slides [here](https://speakerdeck.com/kabirbaidhya/frontend-development-with-react).
+## Project Overview
 
-Check the demo hosted on heroku https://simplest-react-todo-app.herokuapp.com/.
+This project demonstrates how to package a React application into a lightweight production Docker image using a multi-stage build. The application is served with Nginx and can be run either as a standalone container or with Docker Compose.
 
+## Features
 
-## Instructions
+* React Todo application
+* Multi-stage Docker build
+* Nginx production server
+* Docker Compose support
+* Optimized image build using `.dockerignore`
+* Production-ready container setup
 
-First clone this repository.
-```bash
-$ git clone https://github.com/kabirbaidhya/react-todo-app.git
+---
+
+## Tech Stack
+
+* React
+* Docker
+* Docker Compose
+* Nginx
+
+---
+
+## Project Structure
+
+```text
+react-todo-app/
+├── Dockerfile
+├── docker-compose.yml
+├── .dockerignore
+├── nginx.conf
+├── package.json
+├── public/
+├── src/
+└── README.md
 ```
 
-Install dependencies. Make sure you already have [`nodejs`](https://nodejs.org/en/) & [`npm`](https://www.npmjs.com/) installed in your system.
-```bash
-$ npm install # or yarn
-```
+---
 
-Run it
-```bash
-$ npm start # or yarn start
-```
-
-## Steps
-Each step is a branch. Check out to the step you want to test.
+## Build the Docker Image
 
 ```bash
-$ git checkout <step-number>    # eg: git checkout step-1
+docker build -t react-todo-app:2.0 .
 ```
-* [step-0](https://github.com/kabirbaidhya/react-todo-app/commits/step-0) - Setup app using `create-react-app`.
-* [step-1](https://github.com/kabirbaidhya/react-todo-app/commits/step-1) - React Hello World.
-* [step-2](https://github.com/kabirbaidhya/react-todo-app/commits/step-2) - Add some JSX for the todoapp.
-* [step-3](https://github.com/kabirbaidhya/react-todo-app/commits/step-3) - List todo items dynamically.
-* [step-4](https://github.com/kabirbaidhya/react-todo-app/commits/step-4) - Create `TodoList` component.
-* [step-5](https://github.com/kabirbaidhya/react-todo-app/commits/step-5) - Extract more components: `TodoItem`, & `Header`.
-* [step-6](https://github.com/kabirbaidhya/react-todo-app/commits/step-6) - Add `Footer` component to display count.
-* [step-7](https://github.com/kabirbaidhya/react-todo-app/commits/step-7) - Add `InputBox` component.
-* [step-8](https://github.com/kabirbaidhya/react-todo-app/commits/step-8) - Convert to stateful components.
-* [step-9](https://github.com/kabirbaidhya/react-todo-app/commits/step-9) - Add new todo item.
-* [step-10](https://github.com/kabirbaidhya/react-todo-app/commits/step-10) - Add todo list filter.
-* [step-11](https://github.com/kabirbaidhya/react-todo-app/commits/step-11) - Refactor code by moving logic to services.
-* [step-12](https://github.com/kabirbaidhya/react-todo-app/commits/step-12) - Make check/uncheck change the todo item status to completed/pending.
-* [step-13](https://github.com/kabirbaidhya/react-todo-app/commits/step-13) - Refactor code and design improvements.
-* [step-14](https://github.com/kabirbaidhya/react-todo-app/commits/step-14) - Refactor and separate UI & stateful components.
-* [step-15](https://github.com/kabirbaidhya/react-todo-app/commits/step-15) - Finalization of TodoApp.
+
+---
+
+## Run the Container
+
+```bash
+docker run -d \
+  --name react-todo-app \
+  -p 8080:80 \
+  react-todo-app:2.0
+```
+
+Open your browser:
+
+```
+http://localhost:8080
+```
+
+---
+
+## Run with Docker Compose
+
+Start:
+
+```bash
+docker compose up -d
+```
+
+Stop:
+
+```bash
+docker compose down
+```
+
+View logs:
+
+```bash
+docker compose logs
+```
+
+---
+
+## Inspect the Image
+
+Show image size:
+
+```bash
+docker images react-todo-app
+```
+
+Inspect image layers:
+
+```bash
+docker history react-todo-app:2.0
+```
+
+Open a shell inside the container:
+
+```bash
+docker run -it react-todo-app:2.0 sh
+```
+
+Explore the Nginx files:
+
+```bash
+ls
+ls /usr/share/nginx/html
+```
+
+---
+
+## Docker Concepts Practiced
+
+* Multi-stage Docker builds
+* Image optimization
+* Docker image layers
+* Docker caching
+* `.dockerignore`
+* Nginx container
+* Port mapping
+* Docker Compose
+* Container inspection
+
+---
+
+## Git History
+
+| Commit    | Description                                                      |
+| --------- | ---------------------------------------------------------------- |
+| `7b429f1` | Added `.dockerignore` for build optimization                     |
+| `51c7b37` | Added Docker Compose configuration                               |
+| `3fa1e59` | Containerized React app using multi-stage Docker build and Nginx |
+| `ffd8a63` | Initialized React Todo App project                               |
+
+---
+
+## Learning Outcomes
+
+Through this project, I learned how to:
+
+* Containerize a React application
+* Create efficient multi-stage Docker images
+* Serve static files using Nginx
+* Reduce Docker build context using `.dockerignore`
+* Use Docker Compose for application management
+* Inspect Docker image layers
+* Explore running containers
+
+---
+
+## Author
+
+**Saeed Asif**
+
+BSCS Student | Aspiring Junior DevOps / Cloud Engineer
+
+Linkedin : https://www.linkedin.com/in/saeedasif-devops/
